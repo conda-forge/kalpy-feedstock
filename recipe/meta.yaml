@@ -30,16 +30,19 @@ requirements:
     - pip
     - kaldi
     - openfst
+    -pynini
   run:
     - python
-    - pynini
+    - dataclassy
     - numpy
     - librosa
+    - praatio
 
 test:
   requires:
     # the cuda variant of kaldi requires loading libcuda.so, which we don't have in regular CI
     - kaldi =*=cpu*
+    - pytest-order
   imports:
     - _kalpy
     - kalpy
