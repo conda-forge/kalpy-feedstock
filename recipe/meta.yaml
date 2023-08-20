@@ -30,7 +30,7 @@ requirements:
     - pip
     - kaldi
     - openfst
-    -pynini
+    - pynini
   run:
     - python
     - dataclassy
