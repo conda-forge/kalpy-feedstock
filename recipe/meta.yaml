@@ -1,5 +1,5 @@
 {% set name = "kalpy" %}
-{% set version = "0.5.9" %}
+{% set version = "0.6.0" %}
 
 package:
   name: kalpy
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/k/kalpy-kaldi/kalpy-kaldi-{{ version }}.tar.gz
-  sha256: 8c8a0af4f7311fc0267d6b48a244e7d84a2d66d49171a3ddd3d0498aabb35c4c
+  sha256: a4de4c0245fdb4cee12cec22ce152bf425f1455815d88419344dd91e5b1f3a32
 
 build:
   number: 0
