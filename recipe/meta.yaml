@@ -28,7 +28,7 @@ requirements:
   host:
     - python
     - pip
-    - kaldi
+    - kaldi >=5.5.1068
     - openfst
     - pynini
   run:
