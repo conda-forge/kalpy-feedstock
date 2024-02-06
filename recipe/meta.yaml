@@ -1,5 +1,5 @@
 {% set name = "kalpy" %}
-{% set version = "0.6.1" %}
+{% set version = "0.6.2" %}
 
 package:
   name: kalpy
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/k/kalpy-kaldi/kalpy-kaldi-{{ version }}.tar.gz
-  sha256: 4bb06f63506ec11155dd717b7dc248ae9ae4283fe052dc51ad0a51dc821f9d18
+  sha256: d15a7319b635238329dea5faaeafd5666c5ceb92d85fd8f738d1be5d70ce01f0
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<38]
 
 requirements:
@@ -28,17 +28,17 @@ requirements:
   host:
     - python
     - pip
-    - kaldi >=5.5.1068
-    - openfst ==1.8.2
-    - pynini ==2.1.5
+    - kaldi >=5.5.1112
+    - openfst ==1.8.3
+    - pynini ==2.1.6
   run:
     - python
     - dataclassy
     - numpy
     - librosa
     - praatio
-    - openfst ==1.8.2
-    - pynini ==2.1.5
+    - openfst ==1.8.3
+    - pynini ==2.1.6
 
 test:
   requires:
