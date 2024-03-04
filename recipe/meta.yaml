@@ -10,8 +10,10 @@ source:
   sha256: d15a7319b635238329dea5faaeafd5666c5ceb92d85fd8f738d1be5d70ce01f0
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38]
+  run_exports:
+    - {{ pin_subpackage('kalpy', max_pin='x.x.x') }}
 
 requirements:
   build:
