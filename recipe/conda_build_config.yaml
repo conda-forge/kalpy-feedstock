@@ -1,0 +1,2 @@
+cuda_compiler_version:
+  - None                       # [os.environ.get("CF_CUDA_ENABLED", "False") == "False"]
