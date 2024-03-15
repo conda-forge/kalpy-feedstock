@@ -21,6 +21,8 @@ outputs:
       run_exports:
         strong:
           - kalpy
+      missing_dso_whitelist:
+        - "*/nvcuda.dll"   # [win]
     script: build.sh   # [not win]
     script: bld.bat  # [win]
     requirements:
@@ -50,8 +52,13 @@ outputs:
         - numpy
         - librosa
         - praatio
+        - kaldi 5.5.1112 cpu*  # [cuda_compiler_version == "None"]
+        - kaldi 5.5.1112 cuda*  # [cuda_compiler_version != "None"]
         - openfst ==1.8.3
         - pynini ==2.1.6
+      run_constrained:
+        - kaldi 5.5.1112 cpu*  # [cuda_compiler_version == "None"]
+        - kaldi 5.5.1112 cuda*  # [cuda_compiler_version != "None"]
     test:
       requires:
         # the cuda variant of kaldi requires loading libcuda.so, which we don't have in regular CI
