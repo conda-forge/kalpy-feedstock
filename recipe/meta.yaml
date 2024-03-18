@@ -51,9 +51,9 @@ requirements:
   run_constrained:
     - kaldi =5.5.1112={{ proc_type }}*
 test:
-  # the cuda variant of kaldi requires loading libcuda.so, which we don't have in regular CI
-  skip: true  # [cuda_compiler_version != "None"]
   requires:
+    # the cuda variant of kaldi requires loading libcuda.so, which we don't have in regular CI
+    - kaldi =*=cpu*
     - pytest-order
   imports:
     - _kalpy
