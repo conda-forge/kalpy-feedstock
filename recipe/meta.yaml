@@ -1,5 +1,6 @@
 {% set name = "kalpy" %}
 {% set version = "0.6.3" %}
+{% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
   name: kalpy
@@ -10,15 +11,20 @@ source:
   sha256: e59edfdf76173139e36b02cda7ffdb72aedc1ac313c19f7ee0b01703d0b01331
 
 build:
-  number: 0
-  skip: true  # [py<38]
+  number: 2
+  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
   run_exports:
-    - {{ pin_subpackage('kalpy', max_pin='x.x.x') }}
+    strong:
+      - kalpy
+  missing_dso_whitelist:
+    - "*/nvcuda.dll"   # [win]
 
 requirements:
   build:
-    - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}                  # [cuda_compiler_version != "None"]
+    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python                                  # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
     - cmake
@@ -28,9 +34,10 @@ requirements:
     - setuptools
     - setuptools_scm
   host:
+    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python
     - pip
-    - kaldi >=5.5.1112
+    - kaldi =5.5.1112={{ proc_type }}*
     - openfst ==1.8.3
     - pynini ==2.1.6
   run:
@@ -41,15 +48,8 @@ requirements:
     - praatio
     - openfst ==1.8.3
     - pynini ==2.1.6
-
-test:
-  requires:
-    # the cuda variant of kaldi requires loading libcuda.so, which we don't have in regular CI
-    - kaldi =*=cpu*
-    - pytest-order
-  imports:
-    - _kalpy
-    - kalpy
+  run_constrained:
+    - kaldi =5.5.1112={{ proc_type }}*
 
 about:
   home: https://github.com/mmcauliffe/kalpy
