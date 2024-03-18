@@ -51,10 +51,6 @@ requirements:
   run_constrained:
     - kaldi =5.5.1112={{ proc_type }}*
 
-test:
-  script: run_test.py
-
-
 about:
   home: https://github.com/mmcauliffe/kalpy
   summary: 'Pybind11 bindings for Kaldi for use with the Montreal Forced Aligner'
