@@ -1,5 +1,5 @@
 {% set name = "kalpy" %}
-{% set version = "0.6.3" %}
+{% set version = "0.6.4" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -8,12 +8,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/k/kalpy-kaldi/kalpy-kaldi-{{ version }}.tar.gz
-  sha256: e59edfdf76173139e36b02cda7ffdb72aedc1ac313c19f7ee0b01703d0b01331
+  sha256: 59d49f3a1591e84f3a3cb93e03df99c792476539711802aaded71dda13709337
 
 build:
-  number: 2
+  number: 0
   string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
+  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
   run_exports:
     strong:
       - kalpy
