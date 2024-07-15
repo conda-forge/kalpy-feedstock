@@ -1,5 +1,5 @@
 {% set name = "kalpy" %}
-{% set version = "0.6.4" %}
+{% set version = "0.6.5" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/k/kalpy-kaldi/kalpy-kaldi-{{ version }}.tar.gz
-  sha256: 59d49f3a1591e84f3a3cb93e03df99c792476539711802aaded71dda13709337
+  url: https://pypi.io/packages/source/k/kalpy-kaldi/kalpy_kaldi-{{ version }}.tar.gz
+  sha256: 4864e70c179c0915cc201d477afac267e5fbfdf5a750b1b183c8d7a467858a72
 
 build:
   number: 0
@@ -23,6 +23,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cuda') }}                  # [cuda_compiler_version != "None"]
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python                                  # [build_platform != target_platform]
