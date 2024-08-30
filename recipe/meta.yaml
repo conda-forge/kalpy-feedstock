@@ -32,12 +32,12 @@ requirements:
     - make                                    # [not win]
     - ninja
     - pybind11
-    - setuptools
     - setuptools_scm
   host:
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python
     - pip
+    - setuptools
     - kaldi =5.5.1112={{ proc_type }}*
     - openfst ==1.8.3
     - pynini ==2.1.6
