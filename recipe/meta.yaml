@@ -1,6 +1,5 @@
 {% set name = "kalpy" %}
-{% set version = "0.6.5" %}
-{% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
+{% set version = "0.6.6" %}
 
 package:
   name: kalpy
@@ -8,24 +7,18 @@ package:
 
 source:
   url: https://pypi.io/packages/source/k/kalpy-kaldi/kalpy_kaldi-{{ version }}.tar.gz
-  sha256: 4864e70c179c0915cc201d477afac267e5fbfdf5a750b1b183c8d7a467858a72
+  sha256: 0204553fda4d1c66ca2b4db367f8746b79b8a7308425556e4eb1354c655dc0ac
 
 build:
-  number: 1
-  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
+  number: 0
   run_exports:
     strong:
       - kalpy
-  missing_dso_whitelist:
-    - "*/nvcuda.dll"   # [win]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
-    - {{ compiler('cuda') }}                    # [cuda_compiler_version != "None"]
-    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python                                    # [build_platform != target_platform]
     - cross-python_{{ target_platform }}        # [build_platform != target_platform]
     - setuptools                                # [build_platform != target_platform]
@@ -35,12 +28,11 @@ requirements:
     - ninja
     - pybind11
   host:
-    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python
     - pip
     - setuptools
     - setuptools_scm
-    - kaldi =5.5.1112={{ proc_type }}*
+    - kaldi =*=cpu*
     - openfst ==1.8.3
     - pynini ==2.1.6
   run:
@@ -52,7 +44,7 @@ requirements:
     - openfst ==1.8.3
     - pynini ==2.1.6
   run_constrained:
-    - kaldi =5.5.1112={{ proc_type }}*
+    - kaldi =*=cpu*
 
 about:
   home: https://github.com/mmcauliffe/kalpy
