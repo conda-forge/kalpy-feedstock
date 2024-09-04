@@ -44,7 +44,7 @@ requirements:
     - openfst ==1.8.3
     - pynini ==2.1.6
   run_constrained:
-    - kaldi
+    - kaldi =*=cpu*
 
 about:
   home: https://github.com/mmcauliffe/kalpy
