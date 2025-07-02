@@ -1,5 +1,7 @@
 {% set name = "kalpy" %}
 {% set version = "0.7.0" %}
+{% set kaldi_version = "5.5.1112" %}
+{% set openfst_version = "1.8.3" %}
 
 package:
   name: kalpy
@@ -32,19 +34,18 @@ requirements:
     - pip
     - setuptools
     - setuptools_scm
-    - kaldi =*=cpu*
-    - openfst ==1.8.3
-    - pynini ==2.1.6
+    - kaldi {{ kaldi_version }} cpu
+    - openfst =={{ openfst_version }}
+    - pynini
   run:
     - python
     - dataclassy
     - numpy
     - librosa
     - praatio
-    - openfst ==1.8.3
-    - pynini ==2.1.6
-  run_constrained:
-    - kaldi =*=cpu*
+    - openfst =={{ openfst_version }}
+    - pynini
+    - kaldi {{ kaldi_version }} cpu
 
 about:
   home: https://github.com/mmcauliffe/kalpy
