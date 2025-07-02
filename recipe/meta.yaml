@@ -34,7 +34,7 @@ requirements:
     - pip
     - setuptools
     - setuptools_scm
-    - kaldi {{ kaldi_version }} cpu
+    - kaldi {{ kaldi_version }} cpu*
     - openfst =={{ openfst_version }}
     - pynini
   run:
@@ -45,7 +45,7 @@ requirements:
     - praatio
     - openfst =={{ openfst_version }}
     - pynini
-    - kaldi {{ kaldi_version }} cpu
+    - kaldi {{ kaldi_version }} cpu*
 
 about:
   home: https://github.com/mmcauliffe/kalpy
