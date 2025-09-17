@@ -1,6 +1,6 @@
 {% set name = "kalpy" %}
 {% set version = "0.8.0" %}
-{% set kaldi_version = "5.5.1112" %}
+{% set kaldi_version = "5.5.1172" %}
 {% set openfst_version = "1.8.4" %}
 
 package:
