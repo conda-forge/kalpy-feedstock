@@ -1,7 +1,7 @@
 {% set name = "kalpy" %}
-{% set version = "0.7.2" %}
+{% set version = "0.8.0" %}
 {% set kaldi_version = "5.5.1112" %}
-{% set openfst_version = "1.8.3" %}
+{% set openfst_version = "1.8.4" %}
 
 package:
   name: kalpy
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/k/kalpy-kaldi/kalpy_kaldi-{{ version }}.tar.gz
-  sha256: 4d51b003f60a2a0ab862848a295728cdbc9f99f89870589e4c401d521a531dbb
+  sha256: a8974de41165c4ea4d5ae4e7014d784b5b7f3fb23e8dd3985ef849c730a5c347
 
 build:
   number: 0
@@ -42,10 +42,44 @@ requirements:
     - dataclassy
     - numpy
     - librosa
+    - pyyaml
     - praatio
     - openfst =={{ openfst_version }}
     - pynini
     - kaldi {{ kaldi_version }} cpu*
+
+test:
+  imports:
+    - kalpy
+    - kalpy.aligner
+    - kalpy.data
+    - kalpy.evaluation
+    - kalpy.exceptions
+    - kalpy.models
+    - kalpy.utils
+    - kalpy.utterance
+    - kalpy.decoder
+    - kalpy.decoder
+    - kalpy.decoder.data
+    - kalpy.decoder.decode_graph
+    - kalpy.decoder.training_graphs
+    - kalpy.feat
+    - kalpy.feat.cmvn
+    - kalpy.feat.data
+    - kalpy.feat.fmllr
+    - kalpy.feat.lda
+    - kalpy.feat.mfcc
+    - kalpy.feat.pitch
+    - kalpy.feat.vad
+    - kalpy.fstext
+    - kalpy.fstext.lexicon
+    - kalpy.fstext.utils
+    - kalpy.gmm
+    - kalpy.gmm.align
+    - kalpy.gmm.data
+    - kalpy.gmm.decode
+    - kalpy.gmm.train
+    - kalpy.gmm.utils
 
 about:
   home: https://github.com/mmcauliffe/kalpy
