@@ -1,5 +1,5 @@
 {% set name = "kalpy" %}
-{% set version = "0.8.1" %}
+{% set version = "0.8.2" %}
 {% set kaldi_version = "5.5.1172" %}
 {% set openfst_version = "1.8.4" %}
 
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/k/kalpy-kaldi/kalpy_kaldi-{{ version }}.tar.gz
-  sha256: 781b73bed5c07969871a2af618b84d1758f2e1fc7682c6f15b84e90ceaf34d9a
+  sha256: 060567965a29be7596d8f878ea0d699c2ae287d8bafc1e6d6d02207c11d89318
 
 build:
   number: 0
