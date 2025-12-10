@@ -12,7 +12,7 @@ source:
   sha256: 060567965a29be7596d8f878ea0d699c2ae287d8bafc1e6d6d02207c11d89318
 
 build:
-  number: 0
+  number: 1
   run_exports:
     strong:
       - kalpy
