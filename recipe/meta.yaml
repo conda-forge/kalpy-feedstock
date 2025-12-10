@@ -58,6 +58,8 @@ requirements:
 test:
   imports:
     - kalpy
+    {% if cuda_compiler_version == "None" %}
+    # using the cuda version wants to load libcuda.so.1 which we don't have
     - kalpy.aligner
     - kalpy.data
     - kalpy.evaluation
@@ -87,6 +89,7 @@ test:
     - kalpy.gmm.decode
     - kalpy.gmm.train
     - kalpy.gmm.utils
+    {% endif %}
 
 about:
   home: https://github.com/mmcauliffe/kalpy
