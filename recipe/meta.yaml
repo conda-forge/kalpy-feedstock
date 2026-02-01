@@ -1,4 +1,4 @@
-{% set version = "0.8.2" %}
+{% set version = "0.9.0" %}
 {% set kaldi_version = "5.5.1172" %}
 {% set openfst_version = "1.8.4" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
@@ -46,7 +46,6 @@ requirements:
     - pynini
   run:
     - python
-    - dataclassy
     - numpy
     - librosa
     - pyyaml
