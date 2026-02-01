@@ -1,7 +1,6 @@
 {% set version = "0.9.0" %}
 {% set kaldi_version = "5.5.1172" %}
 {% set openfst_version = "1.8.4" %}
-{% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
   name: kalpy
@@ -9,24 +8,18 @@ package:
 
 source:
   url: https://pypi.org/packages/source/k/kalpy-kaldi/kalpy_kaldi-{{ version }}.tar.gz
-  sha256: 060567965a29be7596d8f878ea0d699c2ae287d8bafc1e6d6d02207c11d89318
+  sha256: 54982b845bb4d13bb909c0c40c5300d78fe0207a840be11543ccf21fd26e8673
 
 build:
   number: 0
-  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
   run_exports:
     strong:
       - kalpy
-  missing_dso_whitelist:
-    - "*/nvcuda.dll"   # [win]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
-    - {{ compiler('cuda') }}                    # [cuda_compiler_version != "None"]
-    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python                                    # [build_platform != target_platform]
     - cross-python_{{ target_platform }}        # [build_platform != target_platform]
     - setuptools                                # [build_platform != target_platform]
@@ -36,12 +29,11 @@ requirements:
     - ninja
     - pybind11
   host:
-    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - python
     - pip
     - setuptools
     - setuptools_scm
-    - kaldi {{ kaldi_version }} {{ proc_type }}*
+    - kaldi {{ kaldi_version }} cpu*
     - openfst =={{ openfst_version }}
     - pynini
   run:
@@ -52,13 +44,11 @@ requirements:
     - praatio
     - openfst =={{ openfst_version }}
     - pynini
-    - kaldi {{ kaldi_version }} {{ proc_type }}*
+    - kaldi {{ kaldi_version }} cpu*
 
 test:
   imports:
     - kalpy
-    {% if cuda_compiler_version == "None" %}
-    # using the cuda version wants to load libcuda.so.1 which we don't have
     - kalpy.aligner
     - kalpy.data
     - kalpy.evaluation
@@ -88,7 +78,6 @@ test:
     - kalpy.gmm.decode
     - kalpy.gmm.train
     - kalpy.gmm.utils
-    {% endif %}
 
 about:
   home: https://github.com/mmcauliffe/kalpy
