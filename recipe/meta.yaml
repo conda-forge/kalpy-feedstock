@@ -11,7 +11,7 @@ source:
   sha256: 54982b845bb4d13bb909c0c40c5300d78fe0207a840be11543ccf21fd26e8673
 
 build:
-  number: 0
+  number: 1
   run_exports:
     strong:
       - kalpy
@@ -33,7 +33,7 @@ requirements:
     - pip
     - setuptools
     - setuptools_scm
-    - kaldi {{ kaldi_version }} cpu*
+    - kaldi {{ kaldi_version }}
     - openfst =={{ openfst_version }}
     - pynini
   run:
@@ -44,7 +44,7 @@ requirements:
     - praatio
     - openfst =={{ openfst_version }}
     - pynini
-    - kaldi {{ kaldi_version }} cpu*
+    - kaldi {{ kaldi_version }}
 
 test:
   imports:
